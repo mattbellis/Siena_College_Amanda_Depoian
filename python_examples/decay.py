@@ -57,18 +57,14 @@ pylab.ylim(-1,8)
 pylab.xlim(-1,8)
 
 slope = (ymean[7]-ymean[0])/(xtot[7]-xtot[0])
-print slope
+print "Slope = ", slope
 
 
 intercept = ymean[2]-(xtot[2]*slope)
-print intercept
+print "Intercept = ", intercept
 
 
-y = np.exp(intercept) * np.exp(slope * x)
-print y
-
-
-
+print "y = ", np.exp(intercept), "*", "(e ** (",(slope), "* x))"
 
 
 pylab.show()
