@@ -7,6 +7,7 @@ Created on Mon May 19 14:03:26 2014
 import pylab
 import numpy as np
 
+
 # Bellis changes
 fig = pylab.figure()
 
@@ -48,6 +49,25 @@ ystddev[0] = 10 # The first number (100) is the same for all of them.
 fig = pylab.figure()
 pylab.errorbar(xtot,ymean,yerr=ystddev,fmt='o',color='r')
 pylab.xlim(-1,9)
+
+lny = np.log(ymean)
+fig = pylab.figure()
+pylab.plot(lny,xtot,'b')
+pylab.ylim(-1,8)
+pylab.xlim(-1,8)
+
+slope = (ymean[7]-ymean[0])/(xtot[7]-xtot[0])
+print slope
+
+
+intercept = ymean[2]-(xtot[2]*slope)
+print intercept
+
+
+y = np.exp(intercept) * np.exp(slope * x)
+print y
+
+
 
 
 
