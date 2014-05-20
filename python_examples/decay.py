@@ -50,21 +50,33 @@ fig = pylab.figure()
 pylab.errorbar(xtot,ymean,yerr=ystddev,fmt='o',color='r')
 pylab.xlim(-1,9)
 
+# Amanda's first attempt.
+'''
 lny = np.log(ymean)
 fig = pylab.figure()
-pylab.plot(lny,xtot,'b')
+pylab.plot(lny,xtot,'bo')
 pylab.ylim(-1,8)
 pylab.xlim(-1,8)
 
-slope = (ymean[7]-ymean[0])/(xtot[7]-xtot[0])
+slope = (ymean[-1]-ymean[0])/(xtot[-1]-xtot[0])
 print "Slope = ", slope
-
 
 intercept = ymean[2]-(xtot[2]*slope)
 print "Intercept = ", intercept
 
-
 print "y = ", np.exp(intercept), "*", "(e ** (",(slope), "* x))"
+'''
+
+N0 = 100
+k = -0.5
+
+xfit = np.linspace(0,8,1000)
+
+# Your goal, is to pick the values of N0 and k so that 
+# the chi2 is at a minimum.
+
+yfit = N0*np.exp(k*xfit)
+pylab.plot(xfit,yfit)
 
 
 pylab.show()
