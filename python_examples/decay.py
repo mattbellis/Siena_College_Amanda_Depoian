@@ -78,12 +78,16 @@ xfit = np.linspace(0,8,1000)
 yfit = N0*np.exp(k*xfit)
 pylab.plot(xfit,yfit)
 
-chi2min =100.0
-for k in range(-4,4,.01):
-    for N0 in range (10,1000,1):
-        yA = N0*np.exp(k*xfit)
-        chi2 = sum(((yA - ystddev)/err)**2)
-        if chi2 < chi2min:
-            return chi2
+err = np.sqrt(ystddev)
+
+
+for k in np.arange(-2,2,.001):
+    for N0 in range (10,100,1):
+        yA = N0*np.exp(k*xtot)
+        if yA.any() == ystddev.any():
+            chi2 = sum(((yA - ystddev)/err)**2)
+            
+
+
 
 pylab.show()
