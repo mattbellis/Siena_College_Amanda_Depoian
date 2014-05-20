@@ -75,19 +75,46 @@ xfit = np.linspace(0,8,1000)
 # Your goal, is to pick the values of N0 and k so that 
 # the chi2 is at a minimum.
 
-yfit = N0*np.exp(k*xfit)
-pylab.plot(xfit,yfit)
 
-err = np.sqrt(ystddev)
+err = ystddev
+
+#print y1
+#print y2
+#print y3
+#print y4
+#print y5
+#print ymean
+#print err
+err[err==0] = 1.0
+#print err
+#exit()
 
 
-for k in np.arange(-2,2,.001):
-    for N0 in range (10,100,1):
+
+bestN0 = -999
+bestk = -999
+
+minchi2 = 10000000000000000
+
+for k in np.arange(-2,2,.01):
+
+    for N0 in np.arange (10,100,0.1):
+
         yA = N0*np.exp(k*xtot)
-        if yA.any() == ystddev.any():
-            chi2 = sum(((yA - ystddev)/err)**2)
+        chi2 = sum(((yA - ymean)/err)**2)
+
+        if chi2<minchi2:
+            print chi2
+            minchi2 = chi2
+
+            bestN0 = N0
+            bestk = k
             
 
 
+print "%f %f" % (bestN0,bestk)
+
+yfit = bestN0*np.exp(bestk*xfit)
+pylab.plot(xfit,yfit)
 
 pylab.show()
