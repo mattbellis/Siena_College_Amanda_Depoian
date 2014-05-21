@@ -11,6 +11,8 @@ collisions = hep_tools1.get_collisions(inFile)
 
 print len(collisions)
 
+nmuons = []
+massmuons = []
 count = 0
 for collision in collisions:
 
@@ -24,20 +26,95 @@ for collision in collisions:
 
     count += 1
     #print "# of muons: %d" % (len(muons))
-    
-    
-    
-# Histogram for the number of muons in each collision    
 
-    fig = plt.figure()
+
+# Finding the mass of a muon
+
+
+    if len(muons) >= 1:
+        #print muons
+        #print muons[0]
+        firstmuon = muons[0]
+        energy1 = firstmuon[0]
+        #print "Energy1: ", energy1
+        px1 = firstmuon[1]
+        #print "Momentum in x direction (1): ", px1
+        py1 = firstmuon[2]
+        #print "Momentum in y direction (1): ", py1
+        pz1 = firstmuon[3]
+        #print "Momentum in z direction (1): ", pz1
+        mass1 = np.sqrt(energy1**2 -(px1**2 + py1**2 + pz1**2))
+        #print "Mass of a muon is (1)", mass1
+    
+        if len(muons) == 2:
+            #print muons
+            #print muons[1]
+            secondmuon = muons[1]
+            energy2 = secondmuon[0]
+            #print"Energy 2: ", energy2
+            px2 = secondmuon[1]
+            #print"Momentum in the x direction (2):", px2
+            py2 = secondmuon[2]
+            #print "Momentum in the y direction (2):", py2
+            pz2 = secondmuon[3]
+            #print "Momentum in the z direction (2):", pz2
+            mass2 = np.sqrt(energy2**2 -(px2**2 + py2**2 + pz2**2))
+            mass = mass1, mass2
+            #print "Mass of a muon is (1)", mass1, "(2) ", mass2
+            
+        elif len(muons) == 1:
+            mass = mass1
+            #print "Mass of a muon is (1)", mass1
+   
+    Mass = mass
+    massmuons.append(Mass) 
+    #print massmuons         
+    #print np.isnan(mass)
+    
+    
+#    fig = plt.figure()
+#    plt.hist(mass)
+#    plt.xlabel('Mass')
+#    plt.ylabel('Muons')
+#    plt.xlim(0,1)
+    
+    
+############# Histogram for the number of muons in each collision  ##########  
+
+    
     data = (len(muons))
-    
-    
-    #plt.hist(data)
+    nmuons.append(data)
+    #print data
+#print nmuons   
+nmuons = np.array(nmuons)   
+nmuons[nmuons==2]   
+print (len(nmuons[nmuons==2]))
+fig = plt.figure()    
+plt.hist(nmuons)
 
-    plt.xlabel('Muons')
-    plt.ylabel('Collision')
-    plt.xlim(-1,5)
-    plt.ylim(0,100)
+plt.xlabel('Muons')
+plt.ylabel('Collisions')
+plt.xlim(-1,5)
 
-    plt.show()
+############# end histogram of the number of muons in a collision ############
+
+##################### Histogram for the mass of a muon ######################
+
+
+
+fig = plt.figure()
+plt.hist(mass)
+
+plt.xlabel('Mass')
+plt.ylabel('Muons')
+plt.xlim(.07,.09)
+plt.ylim(0,2)
+
+
+
+
+plt.show()
+
+
+
+   
