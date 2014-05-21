@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pylab as plt
 import sys
 
-import hep_tools1 
+import hep_tools
 
 inFile = open("/Users/Amanda/Documents/Research/mc_dy.txt", "r")
 
 print "Reading in the data...."
-collisions = hep_tools1.get_collisions(inFile)
+collisions = hep_tools.get_collisions(inFile)
 
 print len(collisions)
 
