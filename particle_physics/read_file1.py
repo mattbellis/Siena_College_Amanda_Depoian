@@ -45,7 +45,10 @@ for collision in collisions:
         #print "Momentum in z direction (1): ", pz1
         mass1 = np.sqrt(energy1**2 -(px1**2 + py1**2 + pz1**2))
         #print "Mass of a muon is (1)", mass1
-    
+        if mass1 == mass1:
+            
+            massmuons.append(mass1)
+        
         if len(muons) == 2:
             #print muons
             #print muons[1]
@@ -59,16 +62,14 @@ for collision in collisions:
             pz2 = secondmuon[3]
             #print "Momentum in the z direction (2):", pz2
             mass2 = np.sqrt(energy2**2 -(px2**2 + py2**2 + pz2**2))
-            mass = mass1, mass2
+            if mass2 == mass2:            
+                massmuons.append(mass2)
+            
             #print "Mass of a muon is (1)", mass1, "(2) ", mass2
             
-        elif len(muons) == 1:
-            mass = mass1
-            #print "Mass of a muon is (1)", mass1
+        
    
-    Mass = mass
-    massmuons.append(Mass) 
-    #print massmuons         
+      
     #print np.isnan(mass)
     
     
@@ -103,13 +104,14 @@ plt.xlim(-1,5)
 
 
 fig = plt.figure()
-plt.hist(mass)
+plt.hist(massmuons,bins=100)
 
 plt.xlabel('Mass')
 plt.ylabel('Muons')
-plt.xlim(.07,.09)
-plt.ylim(0,2)
+#plt.xlim(.07,.09)
 
+print massmuons[0:10]
+print np.mean(massmuons)
 
 
 
