@@ -42,9 +42,16 @@ xtot = x1
 ymean = (y1+y2+y3+y4+y5)/5.0
 ystddev = 0.0
 for y in [y1,y2,y3,y4,y5]:
+    print y
     ystddev += (y-ymean)**2
 ystddev = np.sqrt(ystddev)
+ystddev[ystddev==0] = np.sqrt(ymean[ystddev==0])
+ystddev[ystddev==0] = 1.0
 ystddev[0] = 10 # The first number (100) is the same for all of them.
+
+print ymean
+print ystddev
+#exit()
 
 fig = pylab.figure()
 pylab.errorbar(xtot,ymean,yerr=ystddev,fmt='o',color='r')
@@ -67,23 +74,29 @@ print "Intercept = ", intercept
 print "y = ", np.exp(intercept), "*", "(e ** (",(slope), "* x))"
 '''
 
-N0 = 100
-k = -0.5
+N0 = 10
+k = 0.5
 
 xfit = np.linspace(0,8,1000)
 
 # Your goal, is to pick the values of N0 and k so that 
 # the chi2 is at a minimum.
 
-yfit = N0*np.exp(k*xfit)
-pylab.plot(xfit,yfit)
+yfit = N0*np.exp(k*xtot)
+pylab.plot(xtot,yfit)
+print ystddev
+#pylab.show()
+#exit()
 
-chi2min =100.0
-for k in range(-4,4,.01):
+chi2min =1000000.0
+for k in np.arange(-4,4,.01):
+    #print k,chi2min
     for N0 in range (10,1000,1):
-        yA = N0*np.exp(k*xfit)
-        chi2 = sum(((yA - ystddev)/err)**2)
+        yA = N0*np.exp(k*xtot)
+        chi2 = sum(((yA - ymean)/ystddev)**2)
         if chi2 < chi2min:
-            return chi2
+            print N0,k
+            chi2min = chi2
+            #return chi2
 
 pylab.show()
