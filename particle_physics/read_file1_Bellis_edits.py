@@ -5,15 +5,16 @@ import sys
 import hep_tools
 
 # On Amanda's machine
-#inFile = open("/Users/Amanda/Documents/Research/mc_dy.txt", "r")
+inFile = open("/Users/Amanda/Documents/Research/mc_dy.txt", "r")
 # On Matt's machine
-inFile = open("/home/bellis/shdnbi2013_machinelearning/resources/mc_dy.txt", "r")
+#inFile = open("/home/bellis/shdnbi2013_machinelearning/resources/mc_dy.txt", "r")
 
 print "Reading in the data...."
 collisions = hep_tools.get_collisions(inFile)
 
 print len(collisions)
 
+newmass = []
 nmuons = []
 massmuons = []
 count = 0
@@ -41,9 +42,26 @@ for collision in collisions:
         if mass == mass:
             massmuons.append(mass)
         
+        
+        energy = energy1 + energy2
+        #print energy
+        px = px1+ px2
+        #print px
+        py = py1 + py2
+        pz = pz1 + px2
+        p4 = energy + px + py + pz
+        totmass = np.sqrt(energy**2 - p4**2)  
+        if totmass == totmass:
+            newmass.append(totmass)
+            #print newmass
+        for i in range (0, len(newmass)):
+            newmass[i]
+
+        
+        
     #print np.isnan(mass)
-    
-    
+        
+        
 #    fig = plt.figure()
 #    plt.hist(mass)
 #    plt.xlabel('Mass')
@@ -81,8 +99,8 @@ plt.xlabel('Mass')
 plt.ylabel('Muons')
 #plt.xlim(.07,.09)
 
-print massmuons[0:10]
-print np.mean(massmuons)
+#print massmuons[0:10]
+#print np.mean(massmuons)
 
 
 

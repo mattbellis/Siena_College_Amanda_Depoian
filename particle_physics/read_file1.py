@@ -11,8 +11,14 @@ collisions = hep_tools.get_collisions(inFile)
 
 print len(collisions)
 
+
 nmuons = []
 massmuons = []
+newmass = []
+twopos = []
+twoneg = []
+opp = []
+
 count = 0
 for collision in collisions:
 
@@ -65,9 +71,50 @@ for collision in collisions:
             if mass2 == mass2:            
                 massmuons.append(mass2)
             
-            #print "Mass of a muon is (1)", mass1, "(2) ", mass2
             
-        
+            energy = energy1 + energy2
+            #print energy
+            px = px1+ px2
+            #print px
+            py = py1 + py2
+            pz = pz1 + pz2
+            #p4 = energy + px + py + pz
+            totmass = np.sqrt(energy**2 - (px**2 + py**2 + pz**2)) 
+            if totmass == totmass:
+                newmass.append(totmass)
+                #print newmass
+            for i in range (0, len(newmass)):
+                newmass[i]
+                
+                
+                
+                
+############ Three seperate plots ##########
+    #print muons
+            if firstmuon[4] == secondmuon[4] and firstmuon[4] == 1:
+                #print firstmuon[4]
+                pos = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
+                twopos.append(pos)
+                #print twopos
+            elif firstmuon[4] == secondmuon[4] and firstmuon[4] == -1:
+                neg = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
+                twoneg.append(neg)
+                #print twopos, twoneg
+            elif firstmuon[4] + secondmuon[4] == 0:
+                nuet = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
+                opp.append(nuet)
+
+
+
+
+# Finding the parctile made of two muons            
+#            masstot = mass1 + mass2
+#            if masstot == masstot:
+#                totalmass.append(masstot)
+#                #for i in range (0,10):
+#                #print masstot
+#                for i in range (0,2):
+#                   #print masstot[i]
    
       
     #print np.isnan(mass)
@@ -110,13 +157,22 @@ plt.xlabel('Mass')
 plt.ylabel('Muons')
 #plt.xlim(.07,.09)
 
-print massmuons[0:10]
-print np.mean(massmuons)
+#print massmuons[0:10]
+#print np.mean(massmuons)
 
+fig = plt.figure()
+plt.hist(newmass,bins=100)
 
+###############
+fig = plt.figure()
+plt.hist(twopos,bins=100)
+
+fig = plt.figure()
+plt.hist(twoneg,bins=100)
+
+fig = plt.figure()
+plt.hist(opp,bins=100)
 
 plt.show()
 
 
-
-   
