@@ -9,6 +9,10 @@ inFile = open("/Users/Amanda/Documents/Research/mc_dy.txt", "r")
 print "Reading in the data...."
 collisions = hep_tools.get_collisions(inFile)
 
+
+#if count % 1000 == 0:
+    #print count
+    
 print len(collisions)
 
 
@@ -91,18 +95,18 @@ for collision in collisions:
                 
 ############ Three seperate plots ##########
     #print muons
-            if firstmuon[4] == secondmuon[4] and firstmuon[4] == 1:
-                #print firstmuon[4]
-                pos = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
-                twopos.append(pos)
-                #print twopos
-            elif firstmuon[4] == secondmuon[4] and firstmuon[4] == -1:
-                neg = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
-                twoneg.append(neg)
-                #print twopos, twoneg
-            elif firstmuon[4] + secondmuon[4] == 0:
-                nuet = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
-                opp.append(nuet)
+        if firstmuon[4] == secondmuon[4] and firstmuon[4] == 1:
+            #print firstmuon[4]
+            pos = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
+            twopos.append(pos)
+            #print twopos
+        elif firstmuon[4] == secondmuon[4] and firstmuon[4] == -1:
+            neg = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
+            twoneg.append(neg)
+            #print twopos, twoneg
+        elif firstmuon[4] + secondmuon[4] == 0:
+            nuet = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
+            opp.append(nuet)
 
 
 
