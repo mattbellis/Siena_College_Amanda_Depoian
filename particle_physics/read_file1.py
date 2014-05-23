@@ -25,6 +25,9 @@ opp = []
 
 count = 0
 for collision in collisions:
+    
+    if count%1000==0:
+        print count
 
     jets = collision[0]
     muons = collision[1]
@@ -87,26 +90,23 @@ for collision in collisions:
             if totmass == totmass:
                 newmass.append(totmass)
                 #print newmass
-            for i in range (0, len(newmass)):
-                newmass[i]
+            #for i in range (0, len(newmass)):
+                #newmass[i]
                 
                 
                 
                 
 ############ Three seperate plots ##########
     #print muons
-        if firstmuon[4] == secondmuon[4] and firstmuon[4] == 1:
-            #print firstmuon[4]
-            pos = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
-            twopos.append(pos)
-            #print twopos
-        elif firstmuon[4] == secondmuon[4] and firstmuon[4] == -1:
-            neg = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
-            twoneg.append(neg)
-            #print twopos, twoneg
-        elif firstmuon[4] + secondmuon[4] == 0:
-            nuet = np.sqrt(energy**2 - (px**2 + py**2 + pz**2))
-            opp.append(nuet)
+            if firstmuon[4] == secondmuon[4] and firstmuon[4] == 1:
+                #print firstmuon[4]
+                twopos.append(totmass)
+                #print twopos
+            elif firstmuon[4] == secondmuon[4] and firstmuon[4] == -1:
+                twoneg.append(totmass)
+                #print twopos, twoneg
+            elif firstmuon[4] + secondmuon[4] == 0:
+                opp.append(totmass)
 
 
 

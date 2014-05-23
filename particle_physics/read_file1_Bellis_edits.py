@@ -43,21 +43,21 @@ for collision in collisions:
             massmuons.append(mass)
         
         
-        energy = energy1 + energy2
-        #print energy
-        px = px1+ px2
-        #print px
-        py = py1 + py2
-        pz = pz1 + px2
-        p4 = energy + px + py + pz
-        totmass = np.sqrt(energy**2 - p4**2)  
-        if totmass == totmass:
-            newmass.append(totmass)
-            #print newmass
-        for i in range (0, len(newmass)):
-            newmass[i]
-
-        
+#        energy = energy1 + energy2
+#        #print energy
+#        px = px1+ px2
+#        #print px
+#        py = py1 + py2
+#        pz = pz1 + px2
+#        p4 = energy + px + py + pz
+#        totmass = np.sqrt(energy**2 - p4**2)  
+#        if totmass == totmass:
+#            newmass.append(totmass)
+#            #print newmass
+#        for i in range (0, len(newmass)):
+#            newmass[i]
+#
+#        
         
     #print np.isnan(mass)
         
