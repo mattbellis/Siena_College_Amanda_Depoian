@@ -4,7 +4,9 @@ import sys
 
 import hep_tools 
 
-inFile = open("/Users/Amanda/Documents/Research/mc_ttbar.txt", "r")
+#inFile = open("/Users/Amanda/Documents/Research/mc_ttbar.txt", "r")
+#inFile = open("/home/bellis/shdnbi2013_machinelearning.BAK2/resources/particle_physics/data/mc_ttbar.txt", "r")
+inFile = open("/home/bellis/shdnbi2013_machinelearning.BAK2/resources/particle_physics/data/data.txt", "r")
 
 print "Reading in the data...."
 collisions = hep_tools.get_collisions(inFile)
