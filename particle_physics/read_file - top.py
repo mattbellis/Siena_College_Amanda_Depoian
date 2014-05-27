@@ -4,9 +4,9 @@ import sys
 
 import hep_tools 
 
-#inFile = open("/Users/Amanda/Documents/Research/mc_ttbar.txt", "r")
+inFile = open("/Users/Amanda/Documents/Research/mc_ttbar.txt", "r")
 #inFile = open("/home/bellis/shdnbi2013_machinelearning.BAK2/resources/particle_physics/data/mc_ttbar.txt", "r")
-inFile = open("/home/bellis/shdnbi2013_machinelearning.BAK2/resources/particle_physics/data/data.txt", "r")
+#inFile = open("/home/bellis/shdnbi2013_machinelearning.BAK2/resources/particle_physics/data/data.txt", "r")
 
 print "Reading in the data...."
 collisions = hep_tools.get_collisions(inFile)
@@ -15,12 +15,13 @@ print len(collisions)
 
 numjets = []
 massjets = []
-massjets1 = []
-massjets2 = []
-massjets3 = []
+#massjets1 = []
+#massjets2 = []
+#massjets3 = []
 #jets1 = []
 #jets2 = []
 #jets3 = []
+massW = []
 
 count = 0
 for collision in collisions:
@@ -87,7 +88,28 @@ for collision in collisions:
                 
                 #if mass == mass:
                 massjets.append(mass)
-                #print massjets    
+                #print massjets   
+                
+                
+######## finding the W boson #########
+
+    for L in range (0,number):
+        for M in range (L+1, number):
+            
+            energyL = jets[L][0]
+            pxL = jets[L][1]
+            pyL = jets[L][2]
+            pzL = jets[L][3]
+            
+            energyM = jets[M][0]
+            pxM = jets[M][1]
+            pyM = jets[M][2]
+            pzM = jets[M][3]
+            
+            massLM = np.sqrt((energyL+energyM)**2 -((pxL+pxM)**2 + (pyL+pyM)**2 + (pzL+pzM)**2))
+            massW.append(massLM)
+               
+               
 fig = plt.figure()
 plt.hist(numjets)
 
@@ -96,6 +118,10 @@ plt.hist(numjets)
 fig = plt.figure()
 plt.hist(massjets, bins = 500)
 
+
+
+fig = plt.figure()
+plt.hist(massW, bins = 500, range = (0,500))
 
 plt.show()
 
