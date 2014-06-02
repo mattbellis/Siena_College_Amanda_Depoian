@@ -5,6 +5,7 @@ import sys
 import hep_tools
 
 inFile = open("/Users/Amanda/Documents/Research/mc_dy.txt", "r")
+#inFile = open("/home/bellis/matts-work-environment/python/CMS_convert_csv_to_hep_tools_format/dimuons_hep_format.dat")
 
 print "Reading in the data...."
 collisions = hep_tools.get_collisions(inFile)
@@ -99,14 +100,17 @@ for collision in collisions:
 ############ Three seperate plots ##########
     #print muons
             if firstmuon[4] == secondmuon[4] and firstmuon[4] == 1:
-                #print firstmuon[4]
-                twopos.append(totmass)
-                #print twopos
+                if totmass == totmass:
+                    #print firstmuon[4]
+                    twopos.append(totmass)
+                    #print twopos
             elif firstmuon[4] == secondmuon[4] and firstmuon[4] == -1:
-                twoneg.append(totmass)
+                if totmass == totmass:
+                    twoneg.append(totmass)
                 #print twopos, twoneg
             elif firstmuon[4] + secondmuon[4] == 0:
-                opp.append(totmass)
+                if totmass == totmass:
+                    opp.append(totmass)
 
 
 
@@ -175,6 +179,7 @@ fig = plt.figure()
 plt.hist(twoneg,bins=100)
 
 fig = plt.figure()
+opp = np.array(opp)
 plt.hist(opp,bins=100)
 
 plt.show()
