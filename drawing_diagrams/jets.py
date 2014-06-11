@@ -27,7 +27,6 @@ def jet(origin=(0,0),angle=90,length=0.5,opening_angle=20,ntracks=5,show_tracks=
 
     return patches,lines
 
-
     
 
 

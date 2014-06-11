@@ -116,7 +116,7 @@ plt.hist(numjets)
 #print len(massjets)
 #print massjets
 fig = plt.figure()
-plt.hist(massjets, bins = 500)
+plt.hist(massjets, bins = 100)
 
 
 

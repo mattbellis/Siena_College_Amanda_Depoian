@@ -159,7 +159,7 @@ plt.xlim(-1,5)
 
 
 fig = plt.figure()
-plt.hist(massmuons,bins=100)
+plt.hist(massmuons,bins=200)
 
 plt.xlabel('Mass')
 plt.ylabel('Muons')
@@ -169,18 +169,18 @@ plt.ylabel('Muons')
 #print np.mean(massmuons)
 
 fig = plt.figure()
-plt.hist(newmass,bins=100)
+plt.hist(newmass,bins=200)
 
 ###############
 fig = plt.figure()
-plt.hist(twopos,bins=100)
+plt.hist(twopos,bins=200)
 
 fig = plt.figure()
-plt.hist(twoneg,bins=100)
+plt.hist(twoneg,bins=200)
 
 fig = plt.figure()
 opp = np.array(opp)
-plt.hist(opp,bins=100)
+plt.hist(opp,bins=200)
 
 plt.show()
 
